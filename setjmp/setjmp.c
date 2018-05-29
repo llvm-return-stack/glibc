@@ -33,3 +33,7 @@ __libc_sigsetjmp (jmp_buf env, int savemask)
 
 weak_alias (__libc_sigsetjmp, __sigsetjmp)
 stub_warning (__sigsetjmp)
+#ifdef WITH_RETURN_STACK_SUPPORT
+weak_alias (__libc_sigsetjmp, __safe_sigsetjmp)
+stub_warning (__safe_sigsetjmp)
+#endif

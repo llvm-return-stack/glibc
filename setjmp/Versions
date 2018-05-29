@@ -2,12 +2,15 @@ libc {
   GLIBC_2.0 {
     # functions with special/multiple interfaces
     _longjmp; __sigsetjmp; _setjmp;
+    _safe_longjmp; __safe_sigsetjmp; _safe_setjmp;
 
     # l*
     longjmp;
+    safe_longjmp;
 
     # s*
     setjmp;
+    safe_setjmp;
   }
   GLIBC_PRIVATE {
     # helper functions

@@ -34,3 +34,13 @@ ENTRY (setjmp)
 	jmp __sigsetjmp
 #endif
 END (setjmp)
+
+ENTRY (safe_setjmp)
+	/* Set up arguments, we only need to set the 2nd arg.  */
+	movl $1, %esi
+#ifdef	PIC
+	jmp HIDDEN_JUMPTARGET (__safe_sigsetjmp)
+#else
+	jmp __safe_sigsetjmp
+#endif
+END (safe_setjmp)

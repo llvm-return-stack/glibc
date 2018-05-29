@@ -20,4 +20,9 @@
 #define __longjmp ____longjmp_chk
 #define __libc_siglongjmp __longjmp_chk
 
+#ifdef WITH_RETURN_STACK_SUPPORT
+#define __safe_longjmp ____safe_longjmp_chk
+#define __libc_safe_siglongjmp __safe_longjmp_chk
+#endif
+
 #include <setjmp/longjmp.c>

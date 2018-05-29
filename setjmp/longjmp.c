@@ -39,10 +39,35 @@ __libc_siglongjmp (sigjmp_buf env, int val)
   __longjmp (env[0].__jmpbuf, val ?: 1);
 }
 
+#ifdef WITH_RETURN_STACK_SUPPORT
+void
+__libc_safe_siglongjmp (sigjmp_buf env, int val)
+{
+  /* Perform any cleanups needed by the frames being unwound.  */
+  _longjmp_unwind (env, val);
+
+  if (env[0].__mask_was_saved)
+    /* Restore the saved signal mask.  */
+    (void) __sigprocmask (SIG_SETMASK, &env[0].__saved_mask,
+			  (sigset_t *) NULL);
+
+  /* Call the safe version of longjmp to restore the machine state.  */
+  __safe_longjmp (env[0].__jmpbuf, val ?: 1);
+}
+#endif
+
 #ifndef __libc_siglongjmp
 strong_alias (__libc_siglongjmp, __libc_longjmp)
 libc_hidden_def (__libc_longjmp)
+# ifdef WITH_RETURN_STACK_SUPPORT
+strong_alias (__libc_safe_siglongjmp, __libc_safe_longjmp)
+# endif
 weak_alias (__libc_siglongjmp, _longjmp)
 weak_alias (__libc_siglongjmp, longjmp)
 weak_alias (__libc_siglongjmp, siglongjmp)
+# ifdef WITH_RETURN_STACK_SUPPORT
+weak_alias (__libc_safe_siglongjmp, _safe_longjmp)
+weak_alias (__libc_safe_siglongjmp, safe_longjmp)
+weak_alias (__libc_safe_siglongjmp, safe_siglongjmp)
+# endif
 #endif

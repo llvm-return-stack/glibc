@@ -48,6 +48,7 @@ libc {
   }
   GLIBC_2.11 {
     __longjmp_chk;
+    __safe_longjmp_chk;
   }
   GLIBC_2.15 {
     __fdelt_chk; __fdelt_warn;

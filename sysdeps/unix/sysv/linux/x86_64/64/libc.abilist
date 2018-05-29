@@ -27,6 +27,7 @@ GLIBC_2.10 sgetsgent F
 GLIBC_2.10 sgetsgent_r F
 GLIBC_2.11 GLIBC_2.11 A
 GLIBC_2.11 __longjmp_chk F
+GLIBC_2.11 __safe_longjmp_chk F
 GLIBC_2.11 execvpe F
 GLIBC_2.11 mkostemps F
 GLIBC_2.11 mkostemps64 F
@@ -402,6 +403,7 @@ GLIBC_2.2.5 __signbitf F
 GLIBC_2.2.5 __signbitl F
 GLIBC_2.2.5 __sigpause F
 GLIBC_2.2.5 __sigsetjmp F
+GLIBC_2.2.5 __safe_sigsetjmp F
 GLIBC_2.2.5 __sigsuspend F
 GLIBC_2.2.5 __statfs F
 GLIBC_2.2.5 __stpcpy F
@@ -504,6 +506,7 @@ GLIBC_2.2.5 _exit F
 GLIBC_2.2.5 _flushlbf F
 GLIBC_2.2.5 _libc_intl_domainname D 0x5
 GLIBC_2.2.5 _longjmp F
+GLIBC_2.2.5 _safe_longjmp F
 GLIBC_2.2.5 _mcleanup F
 GLIBC_2.2.5 _mcount F
 GLIBC_2.2.5 _nl_default_dirname D 0x12
@@ -522,6 +525,7 @@ GLIBC_2.2.5 _res_hconf D 0x48
 GLIBC_2.2.5 _rpc_dtablesize F
 GLIBC_2.2.5 _seterr_reply F
 GLIBC_2.2.5 _setjmp F
+GLIBC_2.2.5 _safe_setjmp F
 GLIBC_2.2.5 _sys_errlist D 0x3e8
 GLIBC_2.2.5 _sys_nerr D 0x4
 GLIBC_2.2.5 _sys_siglist D 0x200
@@ -1104,6 +1108,7 @@ GLIBC_2.2.5 lockf F
 GLIBC_2.2.5 lockf64 F
 GLIBC_2.2.5 locs D 0x8
 GLIBC_2.2.5 longjmp F
+GLIBC_2.2.5 safe_longjmp F
 GLIBC_2.2.5 lrand48 F
 GLIBC_2.2.5 lrand48_r F
 GLIBC_2.2.5 lsearch F
@@ -1428,6 +1433,7 @@ GLIBC_2.2.5 sethostid F
 GLIBC_2.2.5 sethostname F
 GLIBC_2.2.5 setitimer F
 GLIBC_2.2.5 setjmp F
+GLIBC_2.2.5 safe_setjmp F
 GLIBC_2.2.5 setlinebuf F
 GLIBC_2.2.5 setlocale F
 GLIBC_2.2.5 setlogin F
@@ -1482,6 +1488,7 @@ GLIBC_2.2.5 siginterrupt F
 GLIBC_2.2.5 sigisemptyset F
 GLIBC_2.2.5 sigismember F
 GLIBC_2.2.5 siglongjmp F
+GLIBC_2.2.5 safe_siglongjmp F
 GLIBC_2.2.5 signal F
 GLIBC_2.2.5 sigorset F
 GLIBC_2.2.5 sigpause F

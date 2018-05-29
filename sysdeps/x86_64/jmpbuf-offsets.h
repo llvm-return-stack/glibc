@@ -24,6 +24,9 @@
 #define JB_R13	3
 #define JB_R14	4
 #define JB_R15	5
+/* The safe versions of setjmp and longjmp don't need to save R15.  They
+   store the marker at this position instead.  */
+#define JB_MARKER 5
 #define JB_RSP	6
 #define JB_PC	7
 #define JB_SIZE (8*8)

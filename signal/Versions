@@ -28,6 +28,7 @@ libc {
     sigaction; sigaddset; sigaltstack; sigandset; sigblock; sigdelset;
     sigemptyset; sigfillset; siggetmask; siginterrupt; sigisemptyset;
     sigismember; siglongjmp; signal; sigorset; sigpause; sigpending;
+    safe_siglongjmp;
     sigprocmask; sigreturn; sigsetmask; sigstack; sigsuspend; sigvec;
     sigwait; ssignal;
   }

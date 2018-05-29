@@ -48,18 +48,39 @@ typedef struct __jmp_buf_tag jmp_buf[1];
    Return 0.  */
 extern int setjmp (jmp_buf __env) __THROWNL;
 
+#ifdef WITH_RETURN_STACK_SUPPORT
+/* Safe version of `setjmp'.  Instead of the return stack pointer,
+   saves the marker into ENV.  */
+extern int safe_setjmp (jmp_buf __env) __THROWNL;
+#endif
+
 /* Store the calling environment in ENV, also saving the
    signal mask if SAVEMASK is nonzero.  Return 0.
    This is the internal name for `sigsetjmp'.  */
 extern int __sigsetjmp (struct __jmp_buf_tag __env[1], int __savemask) __THROWNL;
 
+#ifdef WITH_RETURN_STACK_SUPPORT
+/* Safe version of `__sigsetjmp'.  Instead of the return stack pointer,
+   saves the marker into ENV.  */
+extern int __safe_sigsetjmp (struct __jmp_buf_tag __env[1], int __savemask) __THROWNL;
+#endif
+
 /* Store the calling environment in ENV, not saving the signal mask.
    Return 0.  */
 extern int _setjmp (struct __jmp_buf_tag __env[1]) __THROWNL;
 
+#ifdef WITH_RETURN_STACK_SUPPORT
+/* Safe version of `_setjmp'.  Instead of the return stack pointer,
+   saves the marker into ENV.  */
+extern int _safe_setjmp (struct __jmp_buf_tag __env[1]) __THROWNL;
+#endif
+
 /* Do not save the signal mask.  This is equivalent to the `_setjmp'
    BSD function.  */
 #define setjmp(env)	_setjmp (env)
+#ifdef WITH_RETURN_STACK_SUPPORT
+# define safe_setjmp(env) _safe_setjmp (env)
+#endif
 
 
 /* Jump to the environment saved in ENV, making the
@@ -67,12 +88,26 @@ extern int _setjmp (struct __jmp_buf_tag __env[1]) __THROWNL;
 extern void longjmp (struct __jmp_buf_tag __env[1], int __val)
      __THROWNL __attribute__ ((__noreturn__));
 
+#ifdef WITH_RETURN_STACK_SUPPORT
+/* Safe version of `longjmp'.  Restores the return stack pointer by
+   unwinding the return stack until the marker is reached.  */
+extern void safe_longjmp (struct __jmp_buf_tag __env[1], int __val)
+     __THROWNL __attribute__ ((__noreturn__));
+#endif
+
 #if defined __USE_MISC || defined __USE_XOPEN
 /* Same.  Usually `_longjmp' is used with `_setjmp', which does not save
    the signal mask.  But it is how ENV was saved that determines whether
    `longjmp' restores the mask; `_longjmp' is just an alias.  */
 extern void _longjmp (struct __jmp_buf_tag __env[1], int __val)
      __THROWNL __attribute__ ((__noreturn__));
+
+# ifdef WITH_RETURN_STACK_SUPPORT
+/* Safe version of `_longjmp'.  Restores the return stack pointer by
+   unwinding the return stack until the marker is reached.  */
+extern void _safe_longjmp (struct __jmp_buf_tag __env[1], int __val)
+     __THROWNL __attribute__ ((__noreturn__));
+# endif
 #endif
 
 
@@ -86,12 +121,26 @@ typedef struct __jmp_buf_tag sigjmp_buf[1];
    signal mask if SAVEMASK is nonzero.  Return 0.  */
 # define sigsetjmp(env, savemask)	__sigsetjmp (env, savemask)
 
+# ifdef WITH_RETURN_STACK_SUPPORT
+/* Safe version of `sigsetjmp'.  Identical to `sigsetjmp', but instead
+   of the return stack pointer, saves the marker into ENV.  */
+#  define safe_sigsetjmp(env, savemask) __safe_sigsetjmp (env, savemask)
+# endif
+
 /* Jump to the environment saved in ENV, making the
    sigsetjmp call there return VAL, or 1 if VAL is 0.
    Restore the signal mask if that sigsetjmp call saved it.
    This is just an alias `longjmp'.  */
 extern void siglongjmp (sigjmp_buf __env, int __val)
      __THROWNL __attribute__ ((__noreturn__));
+
+# ifdef WITH_RETURN_STACK_SUPPORT
+/* Safe version of `siglongjmp'.  Identical to `siglongjmp', but
+   restores the return stack pointer by unwinding the return stack
+   until the marker is reached.  */
+extern void safe_siglongjmp (sigjmp_buf __env, int __val)
+     __THROWNL __attribute__ ((__noreturn__));
+# endif
 #endif /* Use POSIX.  */
 
 

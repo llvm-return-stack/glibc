@@ -35,3 +35,14 @@ ENTRY (_setjmp)
 #endif
 END (_setjmp)
 libc_hidden_def (_setjmp)
+
+ENTRY (_safe_setjmp)
+	/* Set up arguments, we only need to set the second arg.  */
+	xorl %esi, %esi
+#ifdef PIC
+	jmp HIDDEN_JUMPTARGET (__safe_sigsetjmp)
+#else
+	jmp __safe_sigsetjmp
+#endif
+END (_safe_setjmp)
+libc_hidden_def (_safe_setjmp)

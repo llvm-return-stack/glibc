@@ -7,9 +7,17 @@
 /* Internal machine-dependent function to restore context sans signal mask.  */
 extern void __longjmp (__jmp_buf __env, int __val)
      __attribute__ ((__noreturn__)) attribute_hidden;
+#ifdef WITH_RETURN_STACK_SUPPORT
+extern void __safe_longjmp (__jmp_buf __env, int __val)
+     __attribute__ ((__noreturn__)) attribute_hidden;
+#endif
 
 extern void ____longjmp_chk (__jmp_buf __env, int __val)
      __attribute__ ((__noreturn__)) attribute_hidden;
+#ifdef WITH_RETURN_STACK_SUPPORT
+extern void ____safe_longjmp_chk (__jmp_buf __env, int __val)
+     __attribute__ ((__noreturn__));
+#endif
 
 /* Internal function to possibly save the current mask of blocked signals
    in ENV, and always set the flag saying whether or not it was saved.
@@ -21,12 +29,25 @@ extern void _longjmp_unwind (jmp_buf env, int val);
 
 extern void __libc_siglongjmp (sigjmp_buf env, int val)
 	  __attribute__ ((noreturn));
+#ifdef WITH_RETURN_STACK_SUPPORT
+extern void __libc_safe_siglongjmp (sigjmp_buf env, int val)
+	  __attribute__ ((noreturn));
+#endif
 extern void __libc_longjmp (sigjmp_buf env, int val)
      __attribute__ ((noreturn));
 libc_hidden_proto (__libc_longjmp)
+#ifdef WITH_RETURN_STACK_SUPPORT
+extern void __libc_safe_longjmp (sigjmp_buf env, int val)
+     __attribute__ ((noreturn));
+libc_hidden_proto (__libc_safe_longjmp)
+#endif
 
 libc_hidden_proto (_setjmp)
 libc_hidden_proto (__sigsetjmp)
+#ifdef WITH_RETURN_STACK_SUPPORT
+libc_hidden_proto (_safe_setjmp)
+libc_hidden_proto (__safe_sigsetjmp)
+#endif
 
 # if IS_IN (rtld) && !defined NO_RTLD_HIDDEN
 extern __typeof (__sigsetjmp) __sigsetjmp attribute_hidden;

@@ -22,6 +22,16 @@ sysdep_routines += cacheinfo strcasecmp_l-nonascii strncase_l-nonascii
 gen-as-const-headers += locale-defines.sym
 endif
 
+ifeq ($(subdir),debug)
+defines += -DWITH_RETURN_STACK_SUPPORT
+sysdep_routines += ____safe_longjmp_chk
+endif
+
+ifeq ($(subdir),setjmp)
+defines += -DWITH_RETURN_STACK_SUPPORT
+sysdep_routines += safe_setjmp __safe_longjmp
+endif
+
 ifeq ($(subdir),elf)
 # There is no good reason to use MMX in x86-64 ld.so with GCC.
 CFLAGS-.os += $(if $(filter $(@F),$(patsubst %,%.os,$(all-rtld-routines))),\

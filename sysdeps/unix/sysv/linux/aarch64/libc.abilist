@@ -288,6 +288,7 @@ GLIBC_2.17 __libc_sa_len F
 GLIBC_2.17 __libc_start_main F
 GLIBC_2.17 __libc_valloc F
 GLIBC_2.17 __longjmp_chk F
+GLIBC_2.17 __safe_longjmp_chk F
 GLIBC_2.17 __lseek F
 GLIBC_2.17 __lxstat F
 GLIBC_2.17 __lxstat64 F
@@ -383,6 +384,7 @@ GLIBC_2.17 __signbitf F
 GLIBC_2.17 __signbitl F
 GLIBC_2.17 __sigpause F
 GLIBC_2.17 __sigsetjmp F
+GLIBC_2.17 __safe_sigsetjmp F
 GLIBC_2.17 __sigsuspend F
 GLIBC_2.17 __snprintf_chk F
 GLIBC_2.17 __sprintf_chk F
@@ -527,6 +529,7 @@ GLIBC_2.17 _exit F
 GLIBC_2.17 _flushlbf F
 GLIBC_2.17 _libc_intl_domainname D 0x5
 GLIBC_2.17 _longjmp F
+GLIBC_2.17 _safe_longjmp F
 GLIBC_2.17 _mcleanup F
 GLIBC_2.17 _nl_default_dirname D 0x12
 GLIBC_2.17 _nl_domain_bindings D 0x8
@@ -543,6 +546,7 @@ GLIBC_2.17 _res_hconf D 0x48
 GLIBC_2.17 _rpc_dtablesize F
 GLIBC_2.17 _seterr_reply F
 GLIBC_2.17 _setjmp F
+GLIBC_2.17 _safe_setjmp F
 GLIBC_2.17 _sys_errlist D 0x438
 GLIBC_2.17 _sys_nerr D 0x4
 GLIBC_2.17 _sys_siglist D 0x208
@@ -1230,6 +1234,7 @@ GLIBC_2.17 lockf F
 GLIBC_2.17 lockf64 F
 GLIBC_2.17 locs D 0x8
 GLIBC_2.17 longjmp F
+GLIBC_2.17 safe_longjmp F
 GLIBC_2.17 lrand48 F
 GLIBC_2.17 lrand48_r F
 GLIBC_2.17 lremovexattr F
@@ -1606,6 +1611,7 @@ GLIBC_2.17 sethostname F
 GLIBC_2.17 setipv4sourcefilter F
 GLIBC_2.17 setitimer F
 GLIBC_2.17 setjmp F
+GLIBC_2.17 safe_setjmp F
 GLIBC_2.17 setlinebuf F
 GLIBC_2.17 setlocale F
 GLIBC_2.17 setlogin F
@@ -1666,6 +1672,7 @@ GLIBC_2.17 siginterrupt F
 GLIBC_2.17 sigisemptyset F
 GLIBC_2.17 sigismember F
 GLIBC_2.17 siglongjmp F
+GLIBC_2.17 safe_siglongjmp F
 GLIBC_2.17 signal F
 GLIBC_2.17 signalfd F
 GLIBC_2.17 sigorset F

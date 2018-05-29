@@ -26,6 +26,9 @@
 #define JB_X26            7
 #define JB_X27            8
 #define JB_X28            9
+/* The safe versions of setjmp and longjmp don't need to save X28.  They
+   store the marker at this position instead.  */
+#define JB_MARKER         9
 #define JB_X29           10
 #define JB_LR            11
 #define JB_SP		 13
